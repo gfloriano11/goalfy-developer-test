@@ -20,7 +20,7 @@ gap: 6px;
 function PurpleButton({text, icon: Icon}: props){
 
     return(
-        <Button >{Icon && <Icon/>}{text}</Button>
+        <Button>{Icon && <Icon/>}{text}</Button>
     );
 }
 
