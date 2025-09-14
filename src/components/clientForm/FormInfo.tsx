@@ -21,6 +21,7 @@ const FormTitle = styled.span`
 const LabelContainer = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 5px;
     font-size: 14px;
     font-weight: 500;
 `;

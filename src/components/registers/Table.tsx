@@ -17,7 +17,7 @@ const ClientsTable = styled.table`
 const Th = styled.th`
     vertical-align: middle;
     text-align: left;
-    min-width: 140px;
+    /* min-width: 140px; */
     position: relative;
     font-weight: 500;
     padding: 8px 20px 8px 16px;

@@ -6,6 +6,7 @@ import { useState } from "react";
 import AddClientForm from "../components/clientForm/AddClientForm";
 
 const MainContainer = styled.div`
+    position: relative;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -20,6 +21,14 @@ const TableContainer = styled.div`
 `;
 
 const FormContainer = styled.div`
+    background-color: #fcfcfc;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #f5f5f5;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-family: "Red Hat Text";
     font-weight: 600;
 `
