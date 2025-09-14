@@ -5,13 +5,17 @@ import Table from "../components/registers/Table";
 import { useState } from "react";
 import AddClientForm from "../components/clientForm/AddClientForm";
 
-const MainContainer = styled.div`
+const MainContainer = styled.div<{noInteraction: boolean}>`
     position: relative;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    /* filter: blur(1px); */
+    filter: ${({ noInteraction }) => (noInteraction) ? "blur(1px)" : "none"};
+    user-select: ${({ noInteraction }) => (noInteraction) ? "none" : "all"};
+    pointer-events: ${({ noInteraction }) => (noInteraction) ? "none" : "all"};
 `
 
 const TableContainer = styled.div`
@@ -36,18 +40,20 @@ function Clients(){
     const [addUserForm, setAddUserForm] = useState(false);
 
     return(
-    <MainContainer>
-        <Navbar/>
-        <OptionsContainer onClick={() => setAddUserForm(true)}/>
+    <>
+      <MainContainer noInteraction={addUserForm}>
+        <Navbar />
+        <OptionsContainer onClick={() => setAddUserForm(true)} />
         <TableContainer>
-            <Table/>
+          <Table />
         </TableContainer>
-        {addUserForm && (
+      </MainContainer>
+      {addUserForm && (
         <FormContainer>
-            <AddClientForm onClick={() => setAddUserForm(false)}/>
+          <AddClientForm onClick={() => setAddUserForm(false)} />
         </FormContainer>
-        )}
-    </MainContainer>
+      )}
+    </>
     )
 }
 
