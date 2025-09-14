@@ -50,7 +50,7 @@ function OptionsContainer(){
         <Options>
             <PurpleButton icon={PlusCircle} text="Novo Registro"/>
             <SearchContainer>
-                <StyledSearch size="24px"/>
+                <StyledSearch size="22px"/>
                 <Search placeholder="Pesquisar..."/>
             </SearchContainer>
             <RegistersInfo>86 registros</RegistersInfo>
