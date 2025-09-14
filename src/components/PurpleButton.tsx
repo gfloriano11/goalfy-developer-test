@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 type props = {
@@ -5,7 +6,7 @@ type props = {
     icon?: React.ElementType
 }
 
-const Button = styled.button`
+const StyledLink = styled(Link)`
     display: flex;
     height: 100%;
     font-family: "Red Hat Text";
@@ -14,17 +15,20 @@ const Button = styled.button`
     align-items: center;
     background: #5D29A1;
     color: white;
-    padding: 8px 16px;
+    padding: 0 12px 0 12px;
     border-radius: 8px;
     cursor: pointer;
     border: none;
     gap: 6px;
+    text-decoration: none;
 `;
 
 function PurpleButton({text, icon: Icon}: props){
 
+    // const navigate = useNavigate();
+
     return(
-        <Button>{Icon && <Icon/>}{text}</Button>
+        <StyledLink to={'add'}>{Icon && <Icon size={"20px"}/>}{text}</StyledLink>
     );
 }
 
