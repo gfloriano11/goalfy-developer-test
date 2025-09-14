@@ -6,21 +6,11 @@ const ClientsTable = styled.table`
     font-family: "Red Hat Text";
     color: #666D73;
     font-size: 14px;
-    /* border-collapse: collapse; */
-    border: 1px solid #E8E8E8;
+    border-collapse: collapse;
     
     & thead{
         width: 100%;
         border-bottom: 1px solid #E8E8E8;
-    }
-
-    & tr{
-        vertical-align: middle;
-        background-color: white;
-    }
-
-    & td{
-        padding-left: 20px;
     }
 `
 
@@ -50,7 +40,13 @@ const Span = styled.span`
     display: flex;
     align-items: center;
     gap: 5px;
+    padding: 6px;
 `
+
+const Td = styled.td`
+    padding: 16px;
+    background-color: #F9F9F9;
+`;
 function Table(){
 
     return(
@@ -67,12 +63,12 @@ function Table(){
             </thead>
             <tbody>
                 <tr>
-                    <td>Gustavo Floriano</td>
-                    <td>gfloriano777@gmail.com</td>
-                    <td>47992606543</td>
-                    <td>13759215920</td>
-                    <td>R. Conrado Kuehne</td>
-                    <td>Joinville</td>
+                    <Td>Integrare Assesoria de Marketing</Td>
+                    <Td>anton_archer@hotmail.com</Td>
+                    <Td>47992606543</Td>
+                    <Td>11049277996</Td>
+                    <Td>R. Benjamin Constant, 3.2...</Td>
+                    <Td>Joinville</Td>
                 </tr>
             </tbody>
         </ClientsTable>

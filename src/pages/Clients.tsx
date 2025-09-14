@@ -11,12 +11,19 @@ const MainContainer = styled.div`
     gap: 30px;
 `
 
+const TableContainer = styled.div`
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #E8E8E8;
+`;
 function Clients(){
     return(
     <MainContainer>
         <Navbar/>
         <OptionsContainer/>
-        <Table/>
+        <TableContainer>
+            <Table/>
+        </TableContainer>
     </MainContainer>
     )
 }
