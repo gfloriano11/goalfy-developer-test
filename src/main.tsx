@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Clients from './pages/Clients.tsx'
+import { ClientsProvider } from './contexts/ClientsContext.tsx'
 
 
 const router = createBrowserRouter([
@@ -18,6 +19,8 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <ClientsProvider>
+      <RouterProvider router={router}/>
+    </ClientsProvider>
   </StrictMode>,
 )
