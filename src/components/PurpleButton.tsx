@@ -8,6 +8,8 @@ type props = {
 const Button = styled.button`
     display: flex;
     height: 100%;
+    font-family: "Red Hat Text";
+    font-weight: 600;
     justify-content: center;
     align-items: center;
     background: #5D29A1;
