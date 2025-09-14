@@ -3,7 +3,7 @@ import styled from "styled-components";
 type props = {
     text: string
     icon?: React.ElementType
-    setAddUserForm: Function
+    onClick?: () => void;
 }
 
 const Button = styled.button`
@@ -22,10 +22,10 @@ const Button = styled.button`
     gap: 6px;
 `;
 
-function PurpleButton({text, icon: Icon, setAddUserForm}: props){
+function PurpleButton({text, icon: Icon, onClick}: props){
 
     return(
-        <Button onClick={() => setAddUserForm(true)}>{Icon && <Icon/>}{text}</Button>
+        <Button onClick={onClick}>{Icon && <Icon/>}{text}</Button>
     );
 }
 

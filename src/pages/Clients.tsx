@@ -29,13 +29,13 @@ function Clients(){
     return(
     <MainContainer>
         <Navbar/>
-        <OptionsContainer setAddUserForm={setAddUserForm}/>
+        <OptionsContainer onClick={() => setAddUserForm(true)}/>
         <TableContainer>
             <Table/>
         </TableContainer>
         {addUserForm && (
         <FormContainer>
-            <AddClientForm setAddUserForm={setAddUserForm}/>
+            <AddClientForm onClick={() => setAddUserForm(false)}/>
         </FormContainer>
         )}
     </MainContainer>

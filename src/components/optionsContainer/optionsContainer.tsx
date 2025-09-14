@@ -3,7 +3,7 @@ import PurpleButton from "../PurpleButton";
 import { PlusCircle, SearchIcon } from "lucide-react";
 
 type props = {
-    setAddUserForm: Function
+    onClick: () => void;
 }
 const Options = styled.div`
     display: flex;
@@ -48,11 +48,11 @@ const RegistersInfo = styled.p`
     font-weight: 500;
 `;
 
-function OptionsContainer({setAddUserForm}: props){
+function OptionsContainer({onClick}: props){
     
     return(
         <Options>
-            <PurpleButton setAddUserForm={setAddUserForm} icon={PlusCircle} text="Novo Registro"/>
+            <PurpleButton onClick={onClick} icon={PlusCircle} text="Novo Registro"/>
             <SearchContainer>
                 <StyledSearch size="22px"/>
                 <Search placeholder="Pesquisar..."/>
