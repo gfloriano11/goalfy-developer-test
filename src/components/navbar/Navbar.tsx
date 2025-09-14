@@ -2,8 +2,7 @@ import styled from "styled-components"
 import LeftContent from "./LeftContent"
 import RightContent from "./RightContent"
 
-function Navbar(){
-    const Navbar = styled.nav`
+const Nav = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,11 +12,13 @@ function Navbar(){
     border-bottom: 1px solid #F2F2F2;
 `
 
+function Navbar(){
+
     return(
-        <Navbar>
+        <Nav>
             <LeftContent/>
             <RightContent/>
-        </Navbar>
+        </Nav>
     )
 }
 
