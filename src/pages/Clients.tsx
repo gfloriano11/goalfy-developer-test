@@ -24,12 +24,18 @@ const RightContent = styled.div`
     font-family: "Red Hat Text";
     gap: 20px;
 `
-const UserImage = styled.img`
-    width: 32px;
-    height: 32px;
+
+const UserImageContainer = styled.div`
+    width: 36px;
+    max-height: 36px;
+    height: 36px;
     border-radius: 50%;
-    object-fit: cover;
-    object-position: top; 
+    /* object-fit: cover; */
+    /* object-position: center;    */
+    overflow: hidden;
+`
+const UserImage = styled.img`
+    width: 100%;
 `
 
 const MembersContainer = styled.div`
@@ -69,7 +75,10 @@ function Clients(){
                     <p>Membros (20)</p> 
                 </MembersContainer>
                 <Separator>|</Separator>
-                <UserImage src="src/assets/foto.jpg"></UserImage>
+                <UserImageContainer>
+                    <UserImage src="src/assets/foto.jpg"></UserImage>
+
+                </UserImageContainer>
             </RightContent>
         </Navbar>
         <div>
