@@ -10,6 +10,7 @@ function Navbar(){
     width: 98vw;
     padding-left: 1vw;
     padding-right: 1vw;
+    border-bottom: 1px solid #F2F2F2;
 `
 
     return(
