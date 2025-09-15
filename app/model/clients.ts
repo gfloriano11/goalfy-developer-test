@@ -42,6 +42,10 @@ async function createClient(req: Request, res: Response): Promise<void>{
     const address = data.logradouro;
     const neighborhood = data.bairro;
 
+    if(req.body.fullname === "" || req.body.email === "" || req.body.phone === "" || req.body.CNPJ === "" || address === "" || city === "" || state === "" || UF === "" || CEP === "" || neighborhood === ""){
+        return res.status(400).json({message: 'Empty fields'});
+    }
+
     const values = [
         req.body.fullname,
         req.body.email,
