@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import AddClientForm from "../components/clientForm/AddClientForm";
 import { ClientsContext } from "../contexts/ClientsContext";
 
-const MainContainer = styled.div<{noInteraction: boolean}>`
+const MainContainer = styled.div<{$nointeraction: boolean}>`
     position: relative;
     width: 100vw;
     display: flex;
@@ -14,9 +14,9 @@ const MainContainer = styled.div<{noInteraction: boolean}>`
     align-items: center;
     gap: 30px;
     /* filter: blur(1px); */
-    filter: ${({ noInteraction }) => (noInteraction) ? "blur(1px)" : "none"};
-    user-select: ${({ noInteraction }) => (noInteraction) ? "none" : "text;"};
-    pointer-events: ${({ noInteraction }) => (noInteraction) ? "none" : "all"};
+    filter: ${({ $nointeraction }) => ($nointeraction) ? "blur(1px)" : "none"};
+    user-select: ${({ $nointeraction }) => ($nointeraction) ? "none" : "text;"};
+    pointer-events: ${({ $nointeraction }) => ($nointeraction) ? "none" : "all"};
 `
 
 const TableContainer = styled.div`
@@ -62,7 +62,7 @@ function Clients(){
     
     return(
     <>
-      <MainContainer noInteraction={addUserForm}>
+      <MainContainer $nointeraction={addUserForm}>
         <Navbar />
         <OptionsContainer onClick={() => setAddUserForm(true)} />
         <TableContainer>
