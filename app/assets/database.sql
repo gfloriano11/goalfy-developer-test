@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS goalfy;
+
 CREATE DATABASE goalfy;
 
 USE goalfy;
