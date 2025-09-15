@@ -1,5 +1,5 @@
 import connect from "../connection/connection.ts";
-import { Request, Response } from "../interfaces/http.ts";
+import type { Request, Response } from "../interfaces/http.ts";
 
 async function getClients(req: Request, res: Response): Promise<void>{
     const connection = connect.getConnection();
