@@ -1,6 +1,24 @@
-import connect from "../connection/connection.js";
+import connect from "../connection/connection.ts";
 
-async function getClients(req, res){
+interface Request {
+    body: {
+        CEP: string;
+        fullname: string;
+        email: string;
+        phone: string;
+        CNPJ: string;
+    };
+    params: {
+        id: string;
+    };
+}
+
+interface Response {
+    status(code: number): Response;
+    json(data?: any): void;
+}
+
+async function getClients(req: Request, res: Response): Promise<void>{
     const connection = connect.getConnection();
 
     const query = `
@@ -21,7 +39,7 @@ async function getClients(req, res){
     connect.endConnection(connection);
 }
 
-async function createClient(req, res){
+async function createClient(req: Request, res: Response): Promise<void>{
     const connection = connect.getConnection();
 
     const CEP = req.body.CEP;
@@ -72,7 +90,7 @@ async function createClient(req, res){
     connect.endConnection(connection);
 }
 
-async function editClient(req, res){
+async function editClient(req: Request, res: Response): Promise<void>{
     const connection = connect.getConnection();
 
     const clientId = req.params.id;
@@ -134,7 +152,7 @@ async function editClient(req, res){
     connect.endConnection(connection);
 }
 
-async function deleteClient(req, res){
+async function deleteClient(req: Request, res: Response): Promise<void>{
     const connection = connect.getConnection();
 
     const clientId = req.params.id;
