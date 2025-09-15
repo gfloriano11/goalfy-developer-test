@@ -82,7 +82,7 @@ function FormInfo(){
                 </InputContainer>
             </LabelContainer>
             <LabelContainer>
-                <label>Endereço</label>
+                <label>CEP</label>
                 <InputContainer>
                     <TextCursor size={"16px"} color="#949FA6"/>
                     <Input type="text" placeholder="Digite aqui..."></Input>
