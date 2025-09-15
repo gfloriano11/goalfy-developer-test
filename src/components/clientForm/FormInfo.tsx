@@ -1,6 +1,7 @@
 import { AtSign, ExternalLinkIcon, List, Phone, TextCursor } from "lucide-react";
 import styled from "styled-components";
 import PurpleButton from "../PurpleButton";
+import { useState } from "react";
 
 const FormInfoContainer = styled.div`
     display: flex;
@@ -50,42 +51,48 @@ const Input = styled.input`
 `;
 
 function FormInfo(){
+    const [clientName, setClientName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [CNPJ, setCNPJ] = useState('');
+    const [CEP, setCEP] = useState('');
+    
     return(
         <FormInfoContainer>
             <FormTitle><ExternalLinkIcon color="#5D29A1"/>Novo Cliente</FormTitle>
             <LabelContainer>
-                <label>Nome do Cliente</label>
+                <label htmlFor="name">Nome do Cliente</label>
                 <InputContainer>
                     <TextCursor size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..."></Input>
+                    <Input type="text" placeholder="Digite aqui..." name="name" onChange={(event) => setClientName(event.target.value)}></Input>
                 </InputContainer>
             </LabelContainer>
             <LabelContainer>
-                <label>Email</label>
+                <label htmlFor="email">Email</label>
                 <InputContainer>
                     <AtSign size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..."></Input>
+                    <Input type="text" placeholder="Digite aqui..." name="email" onChange={(event) => setEmail(event.target.value)}></Input>
                 </InputContainer>
             </LabelContainer>
             <LabelContainer>
-                <label>Telefone</label>
+                <label htmlFor="phone">Telefone</label>
                 <InputContainer>
                     <Phone size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..."></Input>
+                    <Input type="text" placeholder="Digite aqui..." name="phone" onChange={(event) => setPhone(event.target.value)}></Input>
                 </InputContainer>
             </LabelContainer>
             <LabelContainer>
-                <label>CNPJ</label>
+                <label htmlFor="CNPJ">CNPJ</label>
                 <InputContainer>
                     <List size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..."></Input>
+                    <Input type="text" placeholder="Digite aqui..." name="CNPJ" onChange={(event) => setCNPJ(event.target.value)}></Input>
                 </InputContainer>
             </LabelContainer>
             <LabelContainer>
-                <label>CEP</label>
+                <label htmlFor="CEP">CEP</label>
                 <InputContainer>
                     <TextCursor size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..."></Input>
+                    <Input type="text" placeholder="Digite aqui..." name="CEP" onChange={(event) => setCEP(event.target.value)}></Input>
                 </InputContainer>
             </LabelContainer>
             <PurpleButton text="Novo Registro"/>
