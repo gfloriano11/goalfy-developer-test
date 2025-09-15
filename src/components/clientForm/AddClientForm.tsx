@@ -1,6 +1,9 @@
 import { X } from "lucide-react";
 import styled from "styled-components";
 import FormInfo from "./FormInfo";
+import { useContext, useState } from "react";
+import { ClientsContext } from "../../contexts/ClientsContext";
+import { useNavigate } from "react-router-dom";
 
 type props = {
     onClick?: () => void;
@@ -32,12 +35,60 @@ const CloseForm = styled(X)`
 `;
 
 function AddClientForm({onClick}: props){
+    const navigate = useNavigate();
+    const [clientName, setClientName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [CNPJ, setCNPJ] = useState('');
+    const [CEP, setCEP] = useState('');
+
+    const setters = {
+        setClientName,
+        setEmail,
+        setPhone,
+        setCNPJ,
+        setCEP
+    };
+
+    const values = {
+        clientName,
+        email,
+        phone,
+        CNPJ,
+        CEP
+    }
+
+    async function submitForm(submit: React.FormEvent<HTMLFormElement>){
+
+        submit.preventDefault();
+
+        const response = await fetch(`http://localhost:8000/clients`, {
+            method: 'POST',
+            headers: {
+            'Content-Type' : 'application/json'
+            }, 
+            body: JSON.stringify({
+                fullname: clientName,
+                email: email,
+                phone: phone,
+                CNPJ: CNPJ,
+                CEP: CEP
+            })
+        })
+
+        if(!response.ok){
+            throw new Error('Error to add new subscription');
+        }
+
+        window.location.reload();
+    }
+
     return(
-        <Form>
+        <Form onSubmit={submitForm}>
             <TopForm>
                 <CloseForm onClick={onClick}/>
             </TopForm>
-            <FormInfo/>
+            <FormInfo setters={setters} values={values}/>
         </Form>
     )
 }

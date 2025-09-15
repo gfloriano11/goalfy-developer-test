@@ -59,9 +59,9 @@ function Table(){
             <thead>
                 <tr>
                     <Th><Span><TextCursor size={"16px"} color="#949FA6"/>Nome do Cliente</Span></Th>
-                    <Th> <Span><AtSign size={"16px"} color="#949FA6"/> Email</Span></Th>
-                    <Th> <Span><Phone size={"16px"} color="#949FA6"/> Telefone</Span></Th>
-                    <Th> <Span><List size={"16px"} color="#949FA6"/> CNPJ</Span></Th>
+                    <Th><Span><AtSign size={"16px"} color="#949FA6"/> Email</Span></Th>
+                    <Th><Span><Phone size={"16px"} color="#949FA6"/> Telefone</Span></Th>
+                    <Th><Span><List size={"16px"} color="#949FA6"/> CNPJ</Span></Th>
                     <Th><Span><TextCursor size={"16px"} color="#949FA6"/> Endereço</Span></Th>
                     <Th><Span><TextCursor size={"16px"} color="#949FA6"/> Cidade</Span></Th>
                 </tr>

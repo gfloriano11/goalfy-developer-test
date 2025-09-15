@@ -3,6 +3,23 @@ import styled from "styled-components";
 import PurpleButton from "../PurpleButton";
 import { useState } from "react";
 
+type props = {
+    setters: {
+        setClientName: React.Dispatch<React.SetStateAction<string>>;
+        setEmail: React.Dispatch<React.SetStateAction<string>>;
+        setPhone: React.Dispatch<React.SetStateAction<string>>;
+        setCNPJ: React.Dispatch<React.SetStateAction<string>>;
+        setCEP: React.Dispatch<React.SetStateAction<string>>;
+    };
+    values: {
+        clientName: string;
+        email: string;
+        phone: string;
+        CNPJ: string;
+        CEP: string;
+    };
+}
+
 const FormInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -50,12 +67,7 @@ const Input = styled.input`
     outline: none;
 `;
 
-function FormInfo(){
-    const [clientName, setClientName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [CNPJ, setCNPJ] = useState('');
-    const [CEP, setCEP] = useState('');
+function FormInfo({setters, values}: props){
     
     return(
         <FormInfoContainer>
@@ -64,35 +76,62 @@ function FormInfo(){
                 <label htmlFor="name">Nome do Cliente</label>
                 <InputContainer>
                     <TextCursor size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..." name="name" onChange={(event) => setClientName(event.target.value)}></Input>
+                    <Input
+                        type="text"
+                        placeholder="Digite aqui..."
+                        name="name" 
+                        value={values.clientName}
+                        onChange={(event) => setters.setClientName(event.target.value)}></Input>
                 </InputContainer>
             </LabelContainer>
             <LabelContainer>
                 <label htmlFor="email">Email</label>
                 <InputContainer>
                     <AtSign size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..." name="email" onChange={(event) => setEmail(event.target.value)}></Input>
+                    <Input
+                        type="text"
+                        placeholder="Digite aqui..." 
+                        name="email"
+                        value={values.email}
+                        onChange={(event) => setters.setEmail(event.target.value)}></Input>
                 </InputContainer>
             </LabelContainer>
             <LabelContainer>
                 <label htmlFor="phone">Telefone</label>
                 <InputContainer>
                     <Phone size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..." name="phone" onChange={(event) => setPhone(event.target.value)}></Input>
+                    <Input
+                        type="text"
+                        placeholder="Digite aqui..."
+                        name="phone"
+                        value={values.phone}
+                        onChange={(event) => setters.setPhone(event.target.value)}></Input>
                 </InputContainer>
             </LabelContainer>
             <LabelContainer>
                 <label htmlFor="CNPJ">CNPJ</label>
                 <InputContainer>
                     <List size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..." name="CNPJ" onChange={(event) => setCNPJ(event.target.value)}></Input>
+                    <Input 
+                        type="text" 
+                        placeholder="Digite aqui..." 
+                        name="CNPJ" 
+                        value={values.CNPJ}
+                        onChange={(event) => setters.setCNPJ(event.target.value)}>
+                    </Input>
                 </InputContainer>
             </LabelContainer>
             <LabelContainer>
                 <label htmlFor="CEP">CEP</label>
                 <InputContainer>
                     <TextCursor size={"16px"} color="#949FA6"/>
-                    <Input type="text" placeholder="Digite aqui..." name="CEP" onChange={(event) => setCEP(event.target.value)}></Input>
+                    <Input
+                        type="text" 
+                        placeholder="Digite aqui..." 
+                        name="CEP" 
+                        value={values.CEP}
+                        onChange={(event) => setters.setCEP(event.target.value)}>
+                    </Input>
                 </InputContainer>
             </LabelContainer>
             <PurpleButton text="Novo Registro"/>
