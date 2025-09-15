@@ -5,7 +5,7 @@ async function getClients(req, res){
 
     const query = `
         SELECT 
-            id, fullname, email, phone, CNPJ, address
+            *
         FROM
             clients;
     `
