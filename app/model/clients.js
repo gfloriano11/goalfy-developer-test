@@ -72,6 +72,68 @@ async function createClient(req, res){
     connect.endConnection(connection);
 }
 
+async function editClient(req, res){
+    const connection = connect.getConnection();
+
+    const clientId = req.params.id;
+    const CEP = req.body.CEP;
+    
+    const addressInfo = await fetch(`https://viacep.com.br/ws/${CEP}/json`, {
+        method: 'GET',
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    })
+
+    const data = await addressInfo.json();
+
+    const city = data.localidade;
+    const state = data.estado;
+    const UF = data.uf;
+    const address = data.logradouro;
+    const neighborhood = data.bairro;
+
+    const values = [
+        req.body.fullname,
+        req.body.email,
+        req.body.phone,
+        req.body.CNPJ,
+        CEP,
+        address,
+        city,
+        state,
+        UF,
+        neighborhood,
+        clientId
+    ];
+
+    const query = `
+        UPDATE clients SET
+            fullname = ?,
+            email = ?,
+            phone = ?,
+            CNPJ = ?,
+            CEP = ?,
+            address = ?,
+            city = ?,
+            state = ?,
+            UF = ?,
+            neighborhood = ?
+        WHERE
+            id = ?;
+    `
+
+    connection.query(query, values, (error, data) => {
+        if(error){
+            res.status(500).json(error);
+        }
+
+        res.status(200).json(data);
+    });
+
+    connect.endConnection(connection);
+}
+
 async function deleteClient(req, res){
     const connection = connect.getConnection();
 
@@ -95,5 +157,6 @@ async function deleteClient(req, res){
 export default {
     getClients,
     createClient,
+    editClient,
     deleteClient
 };
