@@ -72,7 +72,28 @@ async function createClient(req, res){
     connect.endConnection(connection);
 }
 
+async function deleteClient(req, res){
+    const connection = connect.getConnection();
+
+    const clientId = req.params.id;
+
+    const query = `
+        DELETE FROM clients WHERE id = ?;
+    `
+
+    connection.query(query, clientId, (error, data) => {
+        if(error){
+            res.status(500).json(error);
+        }
+
+        res.status(200).json(data);
+    });
+
+    connect.endConnection(connection);
+}
+
 export default {
     getClients,
-    createClient
+    createClient,
+    deleteClient
 };
