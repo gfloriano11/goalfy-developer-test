@@ -61,3 +61,8 @@ npm install
 ```bash
 npm run start
 ```
+
+## Banco de Dados
+
+- O script de criação do banco de dados `goalfy` está em `app/assets/database.sql`
+- Antes de iniciar o projeto, rode o banco na sua máquina e configure a conexão em `app/connection/connection.ts`, se necessário.
