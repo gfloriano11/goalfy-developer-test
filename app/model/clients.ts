@@ -1,22 +1,5 @@
 import connect from "../connection/connection.ts";
-
-interface Request {
-    body: {
-        CEP: string;
-        fullname: string;
-        email: string;
-        phone: string;
-        CNPJ: string;
-    };
-    params: {
-        id: string;
-    };
-}
-
-interface Response {
-    status(code: number): Response;
-    json(data?: any): void;
-}
+import { Request, Response } from "../interfaces/http.ts";
 
 async function getClients(req: Request, res: Response): Promise<void>{
     const connection = connect.getConnection();
