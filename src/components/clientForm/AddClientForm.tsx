@@ -1,9 +1,7 @@
 import { X } from "lucide-react";
 import styled from "styled-components";
 import FormInfo from "./FormInfo";
-import { useContext, useState } from "react";
-import { ClientsContext } from "../../contexts/ClientsContext";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 type props = {
     onClick?: () => void;
@@ -35,7 +33,6 @@ const CloseForm = styled(X)`
 `;
 
 function AddClientForm({onClick}: props){
-    const navigate = useNavigate();
     const [clientName, setClientName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');

@@ -1,7 +1,6 @@
 import { AtSign, ExternalLinkIcon, List, Phone, TextCursor } from "lucide-react";
 import styled from "styled-components";
 import PurpleButton from "../PurpleButton";
-import { useState } from "react";
 
 type props = {
     setters: {
