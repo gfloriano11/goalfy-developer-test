@@ -14,7 +14,7 @@ const MainContainer = styled.div<{noInteraction: boolean}>`
     gap: 30px;
     /* filter: blur(1px); */
     filter: ${({ noInteraction }) => (noInteraction) ? "blur(1px)" : "none"};
-    user-select: ${({ noInteraction }) => (noInteraction) ? "none" : "all"};
+    user-select: ${({ noInteraction }) => (noInteraction) ? "none" : "text;"};
     pointer-events: ${({ noInteraction }) => (noInteraction) ? "none" : "all"};
 `
 
