@@ -2,8 +2,9 @@ import Navbar from "../components/navbar/Navbar";
 import styled from "styled-components";
 import OptionsContainer from "../components/optionsContainer/optionsContainer";
 import Table from "../components/registers/Table";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AddClientForm from "../components/clientForm/AddClientForm";
+import { ClientsContext } from "../contexts/ClientsContext";
 
 const MainContainer = styled.div<{noInteraction: boolean}>`
     position: relative;
@@ -38,7 +39,27 @@ const FormContainer = styled.div`
 `
 function Clients(){
     const [addUserForm, setAddUserForm] = useState(false);
+    const context = useContext(ClientsContext);
 
+    async function getClients(){
+
+      const response = await fetch(`http://localhost:8000/clients`, {
+        method: 'GET',
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+      })
+
+      const data = await response.json();
+      console.log(data);
+      context?.loadClients(data);
+
+    }
+
+    useEffect(() => {
+      getClients();
+    }, [])
+    
     return(
     <>
       <MainContainer noInteraction={addUserForm}>
