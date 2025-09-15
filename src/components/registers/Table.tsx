@@ -1,5 +1,7 @@
 import { AtSign, List, Phone, TextCursor } from "lucide-react";
+import { useContext } from "react";
 import styled from "styled-components";
+import { ClientsContext } from "../../contexts/ClientsContext";
 
 const ClientsTable = styled.table`
     width: 80vw;
@@ -49,6 +51,9 @@ const Td = styled.td`
 `;
 function Table(){
 
+    const context = useContext(ClientsContext);
+    const clients = context?.clients;
+
     return(
         <ClientsTable>
             <thead>
@@ -62,14 +67,16 @@ function Table(){
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <Td>Integrare Assesoria de Marketing</Td>
-                    <Td>anton_archer@hotmail.com</Td>
-                    <Td>47992606543</Td>
-                    <Td>11049277996</Td>
-                    <Td>R. Benjamin Constant, 3.2...</Td>
-                    <Td>Joinville</Td>
+                {clients?.map((client) => (
+                <tr key={client.id}>
+                    <Td>{client.fullname}</Td>
+                    <Td>{client.email}</Td>
+                    <Td>{client.phone}</Td>
+                    <Td>{client.CNPJ}</Td>
+                    <Td>{client.address}</Td>
+                    <Td>{client.city}</Td>
                 </tr>
+                ))}
             </tbody>
         </ClientsTable>
 
