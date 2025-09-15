@@ -3,7 +3,9 @@ import PurpleButton from "../PurpleButton";
 import { PlusCircle, SearchIcon } from "lucide-react";
 
 type props = {
+    setSearch: React.Dispatch<React.SetStateAction<string>>
     onClick: () => void;
+    countRegisters: number
 }
 const Options = styled.div`
     display: flex;
@@ -48,16 +50,19 @@ const RegistersInfo = styled.p`
     font-weight: 500;
 `;
 
-function OptionsContainer({onClick}: props){
+function OptionsContainer({setSearch, onClick, countRegisters}: props){
     
     return(
         <Options>
             <PurpleButton onClick={onClick} icon={PlusCircle} text="Novo Registro"/>
             <SearchContainer>
                 <StyledSearch size="22px"/>
-                <Search placeholder="Pesquisar..."/>
+                <Search
+                    placeholder="Pesquisar..."
+                    onChange={(event) => setSearch(event.target.value)}
+                />
             </SearchContainer>
-            <RegistersInfo>86 registros</RegistersInfo>
+            <RegistersInfo>{countRegisters} registros</RegistersInfo>
         </Options>
     )
 }

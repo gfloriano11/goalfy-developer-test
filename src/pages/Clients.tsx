@@ -4,7 +4,7 @@ import OptionsContainer from "../components/optionsContainer/optionsContainer";
 import Table from "../components/registers/Table";
 import { useContext, useEffect, useState } from "react";
 import AddClientForm from "../components/clientForm/AddClientForm";
-import { ClientsContext } from "../contexts/ClientsContext";
+import { ClientsContext, type Client } from "../contexts/ClientsContext";
 
 const MainContainer = styled.div<{$nointeraction: boolean}>`
     position: relative;
@@ -13,7 +13,6 @@ const MainContainer = styled.div<{$nointeraction: boolean}>`
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    /* filter: blur(1px); */
     filter: ${({ $nointeraction }) => ($nointeraction) ? "blur(1px)" : "none"};
     user-select: ${({ $nointeraction }) => ($nointeraction) ? "none" : "text;"};
     pointer-events: ${({ $nointeraction }) => ($nointeraction) ? "none" : "all"};
@@ -38,9 +37,11 @@ const FormContainer = styled.div`
     font-weight: 600;
 `
 function Clients(){
+    const [search, setSearch] = useState('');
     const [addUserForm, setAddUserForm] = useState(false);
     const context = useContext(ClientsContext);
-
+    const clients = context?.clients;
+    const count = clients? clients.length : 0; 
     async function getClients(){
 
       const response = await fetch(`http://localhost:8000/clients`, {
@@ -51,22 +52,35 @@ function Clients(){
       })
 
       const data = await response.json();
-      console.log(data);
-      context?.loadClients(data);
 
+      if(search === ''){
+        context?.loadClients(data);
+      } else {
+        const lowerCaseSearch = search.toLowerCase();
+        context?.loadClients(
+            data?.filter((client: Client) =>
+            client.fullname.toLowerCase().includes(lowerCaseSearch) ||
+            client.email.toLowerCase().includes(lowerCaseSearch) ||
+            client.phone.toLowerCase().includes(lowerCaseSearch) ||
+            client.CNPJ.toLowerCase().includes(lowerCaseSearch) ||
+            client.address.toLowerCase().includes(lowerCaseSearch) ||
+            client.city.toLowerCase().includes(lowerCaseSearch)
+          )
+        )
+      }
     }
 
     useEffect(() => {
       getClients();
-    }, [])
+    }, [search])
     
     return(
     <>
       <MainContainer $nointeraction={addUserForm}>
         <Navbar />
-        <OptionsContainer onClick={() => setAddUserForm(true)} />
+        <OptionsContainer onClick={() => setAddUserForm(true)} setSearch={setSearch} countRegisters={count}/>
         <TableContainer>
-          <Table />
+          <Table/>
         </TableContainer>
       </MainContainer>
       {addUserForm && (
