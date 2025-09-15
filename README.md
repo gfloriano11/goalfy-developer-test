@@ -62,7 +62,86 @@ npm install
 npm run start
 ```
 
-## Banco de Dados
+## 🎲 Banco de Dados
 
 - O script de criação do banco de dados `goalfy` está em `app/assets/database.sql`
 - Antes de iniciar o projeto, rode o banco na sua máquina e configure a conexão em `app/connection/connection.ts`, se necessário.
+
+## 🛜 API
+
+A API permite **adicionar, editar, remover e listar clientes**.  
+Ao adicionar ou editar um cliente, a API consulta automaticamente a [ViaCEP](https://viacep.com.br/) para preencher o endereço completo.
+
+### Endpoints
+
+| Método | Endpoint       | Descrição                         | Parâmetros/Body |
+|--------|---------------|-----------------------------------|----------------|
+| GET    | `/clients`    | Lista todos os clientes           | Nenhum         |
+| POST   | `/clients`    | Adiciona um novo cliente          | JSON no body: <br> - fullname: string <br> - email: string <br> - phone: string <br> - CNPJ: string <br> - CEP: string |
+| PUT    | `/clients/:id`| Edita um cliente existente        | JSON no body (mesmos campos do POST) <br> Params: id (cliente) |
+| DELETE | `/clients/:id`| Remove um cliente                 | Params: id (cliente) |
+
+---
+
+### Exemplos de uso
+
+#### **Adicionar cliente (POST)**
+```http
+POST /clients
+Content-Type: application/json
+
+{
+  "fullname": "João Silva",
+  "email": "joao@email.com",
+  "phone": "11999999999",
+  "CNPJ": "12345678000199",
+  "CEP": "01001000"
+}
+```
+A API consulta o ViaCEP e salva address, city, state, UF e neighborhood no banco automaticamente.
+
+#### **Editar cliente (PUT)**
+```http
+PUT /clients/1
+Content-Type: application/json
+
+{
+  "fullname": "João Silva",
+  "email": "joao@email.com",
+  "phone": "11999999999",
+  "CNPJ": "12345678000199",
+  "CEP": "01001000"
+}
+```
+Atualiza o cliente com id = 1 e reconsulta o ViaCEP para atualizar o endereço.
+
+#### **Listar clientes (GET)**
+```http
+GET /clients
+```
+Retorna todos os clientes cadastrados.
+
+#### **Remover cliente (DELETE)**
+```http
+DELETE /clients/1
+```
+Remove o cliente com id = 1 do banco.
+
+#### **Exemplo de resposta JSON (GET /clients)**
+```http
+[
+  {
+    "id": 1,
+    "fullname": "João Silva",
+    "email": "joao@email.com",
+    "phone": "11999999999",
+    "CNPJ": "12345678000199",
+    "CEP": "01001000",
+    "address": "Praça da Sé",
+    "neighborhood": "Sé",
+    "city": "São Paulo",
+    "state": "SP",
+    "UF": "SP"
+  }
+]
+```
