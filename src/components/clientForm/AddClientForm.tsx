@@ -39,6 +39,12 @@ function AddClientForm({onClick}: props){
     const [CNPJ, setCNPJ] = useState('');
     const [CEP, setCEP] = useState('');
 
+    const [fullnameError, setFullnameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
+    const [CNPJError, setCNPJError] = useState('');
+    const [CEPError, setCEPError] = useState('');
+
     const setters = {
         setClientName,
         setEmail,
@@ -52,12 +58,47 @@ function AddClientForm({onClick}: props){
         email,
         phone,
         CNPJ,
-        CEP
+        CEP,
+        fullnameError,
+        emailError,
+        phoneError,
+        CNPJError,
+        CEPError
+    }
+
+    function validateForm(){
+        const errors = {
+            fullnameError: '',
+            emailError: '',
+            phoneError: '',
+            CNPJError: '',
+            CEPError: ''
+        }
+
+        if (!clientName.trim()) errors.fullnameError = "Campo obrigatório";
+        if (!email.trim()) errors.emailError = "Campo obrigatório";
+        if (!email.includes('@') && email.trim()) errors.emailError = "Email incorreto";
+        if (!phone.trim()) errors.phoneError = "Campo obrigatório";
+        if (phone.length !== 11 && phone.trim()) errors.phoneError = "Telefone Incorreto";
+        if (!CNPJ.trim()) errors.CNPJError = "Campo obrigatório";
+        if (CNPJ.length !== 14 && CNPJ.trim()) errors.CNPJError = "CNPJ incorreto";
+        if (!CEP.trim()) errors.CEPError = "Campo obrigatório";
+        if (CEP.length !== 8 && CEP.trim()) errors.CEPError = "CEP incorreto";
+
+        setFullnameError(errors.fullnameError);
+        setEmailError(errors.emailError);
+        setPhoneError(errors.phoneError);
+        setCNPJError(errors.CNPJError);
+        setCEPError(errors.CEPError);
+
+        return Object.values(errors).every(error => error === '');
     }
 
     async function submitForm(submit: React.FormEvent<HTMLFormElement>){
 
         submit.preventDefault();
+
+        if(!validateForm()) return;
 
         const response = await fetch(`http://localhost:8000/clients`, {
             method: 'POST',

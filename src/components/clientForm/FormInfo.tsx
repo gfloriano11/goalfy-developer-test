@@ -16,6 +16,11 @@ type props = {
         phone: string;
         CNPJ: string;
         CEP: string;
+        fullnameError: string;
+        emailError: string;
+        phoneError: string;
+        CNPJError: string;
+        CEPError: string;
     };
 }
 
@@ -38,7 +43,8 @@ const FormTitle = styled.span`
 const LabelContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+    /* gap: 5px; */
     font-size: 14px;
     font-weight: 500;
 `;
@@ -66,6 +72,11 @@ const Input = styled.input`
     outline: none;
 `;
 
+const ErrorMessage = styled.p`
+    margin: 0;
+    color: #c01212;
+`
+
 function FormInfo({setters, values}: props){
     
     return(
@@ -82,6 +93,7 @@ function FormInfo({setters, values}: props){
                         value={values.clientName}
                         onChange={(event) => setters.setClientName(event.target.value)}></Input>
                 </InputContainer>
+                {values.fullnameError !== '' && <ErrorMessage>{values.fullnameError}</ErrorMessage>}
             </LabelContainer>
             <LabelContainer>
                 <label htmlFor="email">Email</label>
@@ -94,6 +106,7 @@ function FormInfo({setters, values}: props){
                         value={values.email}
                         onChange={(event) => setters.setEmail(event.target.value)}></Input>
                 </InputContainer>
+                {values.emailError !== '' && <ErrorMessage>{values.emailError}</ErrorMessage>}
             </LabelContainer>
             <LabelContainer>
                 <label htmlFor="phone">Telefone</label>
@@ -106,6 +119,7 @@ function FormInfo({setters, values}: props){
                         value={values.phone}
                         onChange={(event) => setters.setPhone(event.target.value)}></Input>
                 </InputContainer>
+                {values.phoneError !== '' && <ErrorMessage>{values.phoneError}</ErrorMessage>}
             </LabelContainer>
             <LabelContainer>
                 <label htmlFor="CNPJ">CNPJ</label>
@@ -119,6 +133,7 @@ function FormInfo({setters, values}: props){
                         onChange={(event) => setters.setCNPJ(event.target.value)}>
                     </Input>
                 </InputContainer>
+                {values.CNPJError !== '' && <ErrorMessage>{values.CNPJError}</ErrorMessage>}                
             </LabelContainer>
             <LabelContainer>
                 <label htmlFor="CEP">CEP</label>
@@ -132,6 +147,7 @@ function FormInfo({setters, values}: props){
                         onChange={(event) => setters.setCEP(event.target.value)}>
                     </Input>
                 </InputContainer>
+                {values.CEPError !== '' && <ErrorMessage>{values.CEPError}</ErrorMessage>}                
             </LabelContainer>
             <PurpleButton text="Novo Registro"/>
         </FormInfoContainer>
