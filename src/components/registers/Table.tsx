@@ -72,6 +72,22 @@ function Table(){
     const context = useContext(ClientsContext);
     const clients = context?.clients;
 
+    async function deleteClient(id: number){
+
+        const response = await fetch(`http://localhost:8000/clients/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        })
+
+        if(!response.ok){
+            throw new Error("Cannot delete client.");
+        }
+
+        window.location.reload();
+    }
+
     return(
         <ClientsTable>
             <thead>
@@ -97,7 +113,7 @@ function Table(){
                     <Td>
                         <ActionContainer>
                             <ActionButton><Pencil/></ActionButton>
-                            <ActionButton><Trash2Icon/></ActionButton>
+                            <ActionButton onClick={() => deleteClient(client.id)}><Trash2Icon/></ActionButton>
                         </ActionContainer>
                     </Td>
                 </tr>
