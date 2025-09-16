@@ -2,9 +2,11 @@ import { X } from "lucide-react";
 import styled from "styled-components";
 import FormInfo from "./FormInfo";
 import { useState } from "react";
+import type { Client } from "../../contexts/ClientsContext";
 
 type props = {
     onClick?: () => void;
+    editClient: Client | null;
 }
 
 const Form = styled.form`
@@ -33,7 +35,7 @@ const CloseForm = styled(X)`
     cursor: pointer;
 `;
 
-function AddClientForm({onClick}: props){
+function AddClientForm({onClick, editClient}: props){
     const [clientName, setClientName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -101,25 +103,51 @@ function AddClientForm({onClick}: props){
 
         if(!validateForm()) return;
 
-        const response = await fetch(`http://localhost:8000/clients`, {
-            method: 'POST',
-            headers: {
-            'Content-Type' : 'application/json'
-            }, 
-            body: JSON.stringify({
-                fullname: clientName,
-                email: email,
-                phone: phone,
-                CNPJ: CNPJ,
-                CEP: CEP
-            })
-        })
+        if(editClient){
 
-        if(!response.ok){
-            throw new Error('Error to add new client');
+            const response = await fetch(`http://localhost:8000/clients/${editClient.id}`, {
+                method: 'PUT',
+                headers: {
+                'Content-Type' : 'application/json'
+                }, 
+                body: JSON.stringify({
+                    fullname: clientName,
+                    email: email,
+                    phone: phone,
+                    CNPJ: CNPJ,
+                    CEP: CEP
+                })
+            })
+
+            if(!response.ok){
+                throw new Error('Error to edit client');
+            }
+    
+            window.location.reload();
+
+        } else {
+            const response = await fetch(`http://localhost:8000/clients`, {
+                method: 'POST',
+                headers: {
+                'Content-Type' : 'application/json'
+                }, 
+                body: JSON.stringify({
+                    fullname: clientName,
+                    email: email,
+                    phone: phone,
+                    CNPJ: CNPJ,
+                    CEP: CEP
+                })
+            })
+    
+            if(!response.ok){
+                throw new Error('Error to add new client');
+            }
+    
+            window.location.reload();
+
         }
 
-        window.location.reload();
     }
 
     return(
@@ -127,7 +155,7 @@ function AddClientForm({onClick}: props){
             <TopForm>
                 <CloseForm onClick={onClick}/>
             </TopForm>
-            <FormInfo setters={setters} values={values}/>
+            <FormInfo editClient={editClient} setters={setters} values={values}/>
         </Form>
     )
 }

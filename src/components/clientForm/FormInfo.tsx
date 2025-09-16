@@ -1,8 +1,11 @@
 import { AtSign, ExternalLinkIcon, List, Phone, TextCursor } from "lucide-react";
 import styled from "styled-components";
 import PurpleButton from "../PurpleButton";
+import type { Client } from "../../contexts/ClientsContext";
+import { useEffect } from "react";
 
 type props = {
+    editClient: Client | null;
     setters: {
         setClientName: React.Dispatch<React.SetStateAction<string>>;
         setEmail: React.Dispatch<React.SetStateAction<string>>;
@@ -77,11 +80,28 @@ const ErrorMessage = styled.p`
     color: #c01212;
 `
 
-function FormInfo({setters, values}: props){
+function FormInfo({editClient, setters, values}: props){
+
+    useEffect(() => {
+        if(editClient){
+            setters.setClientName(editClient.fullname);
+            setters.setEmail(editClient.email);
+            setters.setPhone(editClient.phone);
+            setters.setCNPJ(editClient.CNPJ);
+            setters.setCEP(editClient.CEP);
+        } else {
+            // se não tiver editando, limpa os campos
+            setters.setClientName('');
+            setters.setEmail('');
+            setters.setPhone('');
+            setters.setCNPJ('');
+            setters.setCEP('');
+        }
+    }, [editClient])
     
     return(
         <FormInfoContainer>
-            <FormTitle><ExternalLinkIcon color="#5D29A1"/>Novo Cliente</FormTitle>
+            <FormTitle><ExternalLinkIcon color="#5D29A1"/>{editClient ? "Editar Cliente" : "Novo Cliente"}</FormTitle>
             <LabelContainer>
                 <label htmlFor="name">Nome do Cliente</label>
                 <InputContainer>

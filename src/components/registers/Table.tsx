@@ -1,7 +1,12 @@
 import { AtSign, Info, List, Pencil, Phone, TextCursor, Trash2Icon } from "lucide-react";
-import { useContext } from "react";
+import React, { useContext, type SetStateAction } from "react";
 import styled from "styled-components";
-import { ClientsContext } from "../../contexts/ClientsContext";
+import { ClientsContext, type Client } from "../../contexts/ClientsContext";
+
+type props = {
+    setEditClient: React.Dispatch<SetStateAction<Client | null>>;
+    setAddUserForm: React.Dispatch<SetStateAction<boolean>>
+}
 
 const ClientsTable = styled.table`
     width: 100%;
@@ -67,7 +72,7 @@ const ActionButton = styled.button`
     cursor: pointer;
     border: none;
 `
-function Table(){
+function Table({setEditClient, setAddUserForm}: props){
 
     const context = useContext(ClientsContext);
     const clients = context?.clients;
@@ -112,7 +117,12 @@ function Table(){
                     <Td>{client.city}</Td>
                     <Td>
                         <ActionContainer>
-                            <ActionButton><Pencil/></ActionButton>
+                            <ActionButton onClick={() => {
+                                setEditClient(client);
+                                setAddUserForm(true);
+                            }}>
+                                <Pencil/>
+                            </ActionButton>
                             <ActionButton onClick={() => deleteClient(client.id)}><Trash2Icon/></ActionButton>
                         </ActionContainer>
                     </Td>

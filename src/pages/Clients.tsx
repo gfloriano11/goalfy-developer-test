@@ -41,6 +41,7 @@ const FormContainer = styled.div`
 `
 function Clients(){
     const [search, setSearch] = useState('');
+    const [editClient, setEditClient] = useState<Client | null>(null);
     const [addUserForm, setAddUserForm] = useState(false);
     const context = useContext(ClientsContext);
     const clients = context?.clients;
@@ -75,6 +76,7 @@ function Clients(){
 
     useEffect(() => {
       getClients();
+      console.log(editClient);
     }, [search])
     
     return(
@@ -83,12 +85,12 @@ function Clients(){
         <Navbar />
         <OptionsContainer onClick={() => setAddUserForm(true)} setSearch={setSearch} countRegisters={count}/>
         <TableContainer>
-          <Table/>
+          <Table setEditClient={setEditClient} setAddUserForm={setAddUserForm}/>
         </TableContainer>
       </MainContainer>
       {addUserForm && (
         <FormContainer>
-          <AddClientForm onClick={() => setAddUserForm(false)} />
+          <AddClientForm editClient={editClient} onClick={() => {setAddUserForm(false); setEditClient(null)}} />
         </FormContainer>
       )}
     </>
