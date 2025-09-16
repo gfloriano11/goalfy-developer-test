@@ -9,6 +9,7 @@ type props = {
 
 const Form = styled.form`
     width: 20vw;
+    min-width: 265px;
     display: flex;
     flex-direction: column;
     background-color: white;

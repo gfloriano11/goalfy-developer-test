@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { ClientsContext } from "../../contexts/ClientsContext";
 
 const ClientsTable = styled.table`
-    width: 80vw;
+    width: 100%; /* ocupa todo espaço do container */
+    min-width: 600px; /* evita esmagar colunas demais */
+    overflow-x: scroll;
     font-family: "Red Hat Text";
     color: #666D73;
     font-size: 14px;
