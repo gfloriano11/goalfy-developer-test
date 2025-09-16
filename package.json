@@ -2,13 +2,13 @@
   "name": "src",
   "private": true,
   "version": "0.0.0",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "concurrently \"npm run dev\" \"ts-node-dev --respawn --transpile-only app/server/server.ts\""
+    "start": "concurrently \"npm run dev\" \"node app/server/server.ts"
   },
   "dependencies": {
     "@types/cors": "^2.8.19",
