@@ -115,7 +115,7 @@ function AddClientForm({onClick}: props){
         })
 
         if(!response.ok){
-            throw new Error('Error to add new subscription');
+            throw new Error('Error to add new client');
         }
 
         window.location.reload();
