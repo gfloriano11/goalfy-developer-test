@@ -44,6 +44,30 @@ desafio-fullstack-goalfy/
 └── README.md
 ```
 
+## 📌 Pré-requisitos
+
+- Node.js >= 22.19.0  
+- npm >= 10.9.3  
+
+> ⚠️ É necessário ter uma versão do Node atualizada para rodar este projeto.  
+> Versões antigas podem causar erros ao executar arquivos TypeScript (`.ts`).
+
+Verifique sua versão:
+```bash
+node -v
+```
+
+Se precisar atualizar: 
+
+Windows: baixe do site [oficial] (https://nodejs.org/)
+
+Linux/macOS: use [nvm] (https://github.com/nvm-sh/nvm)
+
+```bash
+nvm install 22.19.0
+nvm use 22.19.0
+```
+
 ## 🚀 Como Rodar o Projeto  
 
 ### 📂 Clonar o repositório  
