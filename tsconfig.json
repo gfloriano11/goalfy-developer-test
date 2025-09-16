@@ -1,7 +1,9 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2020",
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "dist"
+  }
 }
