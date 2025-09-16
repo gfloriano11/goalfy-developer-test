@@ -168,7 +168,7 @@ function FormInfo({editClient, setters, values}: props){
                 </InputContainer>
                 {values.CEPError !== '' && <ErrorMessage>{values.CEPError}</ErrorMessage>}                
             </LabelContainer>
-            <PurpleButton text="Novo Registro"/>
+            <PurpleButton text={editClient ? "Editar" : "Novo Registro"}/>
         </FormInfoContainer>
     )
 }
