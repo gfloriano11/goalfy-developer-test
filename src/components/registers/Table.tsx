@@ -1,4 +1,4 @@
-import { AtSign, List, Phone, TextCursor } from "lucide-react";
+import { AtSign, Info, List, Pencil, Phone, TextCursor, Trash2Icon } from "lucide-react";
 import { useContext } from "react";
 import styled from "styled-components";
 import { ClientsContext } from "../../contexts/ClientsContext";
@@ -51,6 +51,22 @@ const Td = styled.td`
     padding: 16px;
     background-color: #F9F9F9;
 `;
+
+const ActionContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+`
+
+const ActionButton = styled.button`
+    display: flex;
+    background: #5D29A1;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+`
 function Table(){
 
     const context = useContext(ClientsContext);
@@ -66,6 +82,7 @@ function Table(){
                     <Th><Span><List size={"16px"} color="#949FA6"/> CNPJ</Span></Th>
                     <Th><Span><TextCursor size={"16px"} color="#949FA6"/> Endereço</Span></Th>
                     <Th><Span><TextCursor size={"16px"} color="#949FA6"/> Cidade</Span></Th>
+                    <Th><Span><Info size={"16px"} color="#949FA6"/>Ações</Span></Th>
                 </tr>
             </thead>
             <tbody>
@@ -77,6 +94,12 @@ function Table(){
                     <Td>{client.CNPJ}</Td>
                     <Td>{client.address}</Td>
                     <Td>{client.city}</Td>
+                    <Td>
+                        <ActionContainer>
+                            <ActionButton><Pencil/></ActionButton>
+                            <ActionButton><Trash2Icon/></ActionButton>
+                        </ActionContainer>
+                    </Td>
                 </tr>
                 ))}
             </tbody>
