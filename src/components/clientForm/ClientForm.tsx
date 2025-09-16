@@ -35,7 +35,7 @@ const CloseForm = styled(X)`
     cursor: pointer;
 `;
 
-function AddClientForm({onClick, editClient}: props){
+function ClientForm({onClick, editClient}: props){
     const [clientName, setClientName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -160,4 +160,4 @@ function AddClientForm({onClick, editClient}: props){
     )
 }
 
-export default AddClientForm;
+export default ClientForm;

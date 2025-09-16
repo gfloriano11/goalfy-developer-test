@@ -3,7 +3,7 @@ import styled from "styled-components";
 import OptionsContainer from "../components/optionsContainer/optionsContainer";
 import Table from "../components/registers/Table";
 import { useContext, useEffect, useState } from "react";
-import AddClientForm from "../components/clientForm/AddClientForm";
+import AddClientForm from "../components/clientForm/ClientForm";
 import { ClientsContext, type Client } from "../contexts/ClientsContext";
 
 const MainContainer = styled.div<{$nointeraction: boolean}>`

@@ -90,7 +90,6 @@ function FormInfo({editClient, setters, values}: props){
             setters.setCNPJ(editClient.CNPJ);
             setters.setCEP(editClient.CEP);
         } else {
-            // se não tiver editando, limpa os campos
             setters.setClientName('');
             setters.setEmail('');
             setters.setPhone('');
