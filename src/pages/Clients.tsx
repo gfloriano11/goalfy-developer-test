@@ -21,9 +21,10 @@ const MainContainer = styled.div<{$nointeraction: boolean}>`
 const TableContainer = styled.div`
     max-width: 100vw;
     min-width: 80vw;
+    max-height: 70dvh;
     border-radius: 10px;
-    overflow: hidden;
     overflow-x: auto;
+    overflow-y: auto;
     border: 1px solid #E8E8E8;
 `;
 
