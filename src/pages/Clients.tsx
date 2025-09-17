@@ -76,7 +76,6 @@ function Clients(){
 
     useEffect(() => {
       getClients();
-      console.log(editClient);
     }, [search])
     
     return(
